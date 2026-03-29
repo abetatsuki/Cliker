@@ -84,6 +84,13 @@ namespace Cliker.Domain.Object
         {
             return _amount.GetHashCode();
         }
+        /// <summary>
+        /// 金額を整数で返す。
+        /// </summary>
+        public int GetAmount()
+        {
+            return _amount;
+        }
 
         /// <summary>
         /// 金額の等価性を比較する。
