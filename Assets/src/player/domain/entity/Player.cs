@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class IEntity : MonoBehaviour
+public class Player : MonoBehaviour
 {
     
 }
