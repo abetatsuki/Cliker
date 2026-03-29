@@ -1,5 +1,4 @@
-﻿using Cliker.Domain.Object;
-using UnityEngine;
+﻿
 namespace Cliker.Infra.Object 
 { 
     [System.Serializable]
@@ -8,7 +7,7 @@ namespace Cliker.Infra.Object
     /// </summary>
     public class SaveData
     {
-        public int [] Ranking { get; private set;} = new int [RankCount];
         public const int RankCount = 3;
+        public  int [] Ranking = new int [RankCount];
     }
-}
+    }

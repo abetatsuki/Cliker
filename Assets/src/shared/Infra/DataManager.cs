@@ -8,20 +8,23 @@ namespace Cliker.Infra.Object
     /// </summary>
     public class DataManager : MonoBehaviour
     {
-        [HideInInspector] public SaveData Data;
+        public RankingData RankingData;
+        private SaveData _data;
         private string _filePath;
         private string _fileName = "Data.json";
 
         private void Awake()
         {
-            _filePath = Application.dataPath + "/" + _fileName;
+            _filePath = Path.Combine(Application.persistentDataPath,_fileName);
 
             if(!File.Exists(_filePath))
             {
-                Save(Data);
+                _data = new SaveData();
+                Save(_data);
             }
 
-            Data = Load(_filePath);
+            _data = Load(_filePath);
+            RankingData = new RankingData(_data.Ranking);
         }
 
 
@@ -41,7 +44,8 @@ namespace Cliker.Infra.Object
         }
         private void OnDestroy()
         {
-            Save(Data);
+            _data.Ranking = RankingData.ToArray();
+            Save(_data);
         }
     }
 }
