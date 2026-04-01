@@ -1,7 +1,7 @@
 ﻿
 using System.IO;
 using UnityEngine;
-namespace Src.Tests.Save
+namespace Src.Test.Save
 {
     /// <summary>
     /// セーブデータをJson形式で保存・読み込みする。

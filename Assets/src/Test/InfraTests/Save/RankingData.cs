@@ -1,5 +1,5 @@
 ﻿
-namespace Src.Tests.Save
+namespace Src.Test.Save
 { 
     public class RankingData
     {

@@ -2,7 +2,7 @@
 using TMPro;
 using UnityEngine;
 
-namespace Src.Tests.Save
+namespace Src.Test.Save
 {
     /// <summary>
     /// ランキングの表示およびスコアの登録・更新を行う。
