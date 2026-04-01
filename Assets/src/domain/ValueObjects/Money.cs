@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Cliker.Domain.Object
+namespace Cliker.Domain.ValueObjects
 {
     /// <summary>
     /// 金額を表す値オブジェクト。
@@ -10,7 +10,7 @@ namespace Cliker.Domain.Object
         /// <summary>
         /// 0以上の金額でMoneyを生成する。
         /// </summary>
-        /// <param name="amount">金額</param>
+        /// <param name="amount">　金額　</param>
         /// <exception cref="ArgumentOutOfRangeException">
         /// 金額が0未満の場合にスローされる。
         /// </exception>
@@ -18,7 +18,7 @@ namespace Cliker.Domain.Object
         {
             if (amount < 0)
             {
-                throw new System.ArgumentOutOfRangeException(nameof(amount), "金額は0以上でなければなりません。");
+                throw new ArgumentOutOfRangeException(nameof(amount), "金額は0以上でなければなりません。");
             }
 
             _amount = amount;
@@ -120,6 +120,7 @@ namespace Cliker.Domain.Object
         {
             return left._amount <= right._amount;
         }
+
         private readonly int _amount;
     }
 }
