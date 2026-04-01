@@ -1,7 +1,7 @@
 ﻿
 using System.IO;
 using UnityEngine;
-namespace Cliker.Infra.Object
+namespace Src.Tests.Save
 {
     /// <summary>
     /// セーブデータをJson形式で保存・読み込みする。

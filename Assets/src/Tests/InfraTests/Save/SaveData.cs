@@ -1,6 +1,6 @@
 ﻿
-namespace Cliker.Infra.Object 
-{ 
+namespace Src.Tests.Save
+{
     [System.Serializable]
     /// <summary>
     /// ランタイムデータを保持する。
@@ -8,6 +8,6 @@ namespace Cliker.Infra.Object
     public class SaveData
     {
         public const int RankCount = 3;
-        public  int [] Ranking = new int [RankCount];
+        public int[] Ranking = new int[RankCount];
     }
-    }
+}
