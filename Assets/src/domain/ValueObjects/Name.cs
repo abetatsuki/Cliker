@@ -36,7 +36,10 @@ namespace Src.Domain.ValueObjects
             return _name.GetHashCode();
         }
 
-
+        public string GetName()
+        {
+            return _name;
+        }
         private const int _nameLength = 10;
         private readonly string _name;
     }
