@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Cliker.Domain.Object
+namespace Src.Domain.ValueObjects
 {
     /// <summary>
     /// 金額を表す値オブジェクト。
@@ -10,7 +10,7 @@ namespace Cliker.Domain.Object
         /// <summary>
         /// 0以上の金額でMoneyを生成する。
         /// </summary>
-        /// <param name="amount">金額</param>
+        /// <param name="amount">　金額　</param>
         /// <exception cref="ArgumentOutOfRangeException">
         /// 金額が0未満の場合にスローされる。
         /// </exception>
@@ -18,18 +18,17 @@ namespace Cliker.Domain.Object
         {
             if (amount < 0)
             {
-                throw new System.ArgumentOutOfRangeException(nameof(amount), "金額は0以上でなければなりません。");
+                throw new ArgumentOutOfRangeException(nameof(amount), "金額は0以上でなければなりません。");
             }
 
             _amount = amount;
         }
 
+        public int Amonut {  get { return _amount; } }
+
         /// <summary>
         /// 指定した金額を加算した結果を返す。
         /// </summary>
-        /// <exception cref="OverflowException">
-        /// 計算結果がintの範囲を超えた場合にスローされる。
-        /// </exception>
         public Money Add(Money other)
         {
             checked
@@ -39,28 +38,27 @@ namespace Cliker.Domain.Object
         }
 
         /// <summary>
-        /// 指定した金額の減算を試みる。残高不足の場合は失敗する。
+        /// 指定した金額の減算を試みる。
         /// </summary>
-        /// <param name="other">減算する金額</param>
-        /// <param name="money">減算後の金額（成功時）</param>
-        /// <returns>減算に成功した場合は true、それ以外は false</returns>
-        public bool TrySubtract(Money other, out Money money)
+        public bool CanSubtract(Money cost)
         {
-            if (_amount < other._amount)
+            if (_amount - cost._amount < 0)
             {
-                money = default;
                 return false;
             }
-            money = new Money(_amount - other._amount);
             return true;
         }
 
+        public Money Subtract(Money cost)
+        {
+            return new Money(_amount - cost._amount);
+        }
         /// <summary>
         /// 指定した金額以上の残高があるか判定する。
         /// </summary>
-        public bool IsEnough(Money cost)
+        public bool IsEnough(Money other)
         {
-            return _amount >= cost._amount;
+            return _amount >= other._amount;
         }
 
         /// <summary>
@@ -88,23 +86,23 @@ namespace Cliker.Domain.Object
         /// <summary>
         /// 金額の等価性を比較する。
         /// </summary>
-        public static bool operator == (Money left, Money right)
+        public static bool operator ==(Money left, Money right)
         {
             return left.Equals(right);
         }
-        public static bool operator != (Money left, Money right)
+        public static bool operator !=(Money left, Money right)
         {
             return !left.Equals(right);
         }
-        public static bool operator > (Money left, Money right)
+        public static bool operator >(Money left, Money right)
         {
             return left._amount > right._amount;
         }
-        public static bool operator < (Money left, Money right)
+        public static bool operator <(Money left, Money right)
         {
             return left._amount < right._amount;
         }
-        public static bool operator >= (Money left, Money right)
+        public static bool operator >=(Money left, Money right)
         {
             return left._amount >= right._amount;
         }
@@ -113,6 +111,7 @@ namespace Cliker.Domain.Object
         {
             return left._amount <= right._amount;
         }
+
         private readonly int _amount;
     }
 }
