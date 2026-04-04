@@ -7,5 +7,8 @@ namespace Src.Domain.Factories
     {
         Player CreateNormal(PlayerId id,Name name,Money money);
         Player CreateVip(PlayerId id,Name name, Money money);
+
+        Player CreateNewNormal(PlayerId id, Name name);
+        Player CreateNewVip(PlayerId id, Name name);
     }
 }
