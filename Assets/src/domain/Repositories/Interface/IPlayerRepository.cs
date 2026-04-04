@@ -4,7 +4,7 @@ namespace Src.Domain.Repositories
 {
     public interface IPlayerRepository
     {
-        Player Find(int playerId);
+        Player Find(PlayerId id);
         void Save(Player player);
     }
 }

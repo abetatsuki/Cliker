@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-public　abstract class IEntity : MonoBehaviour
+﻿public　abstract class IEntity 
 {
-    public virtual int  Id => GetInstanceID();
+    public abstract int Id { get; }
 }
