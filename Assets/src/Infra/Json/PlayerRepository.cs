@@ -4,6 +4,7 @@ using System.IO;
 using UnityEngine;
 using Src.Domain.Repositories;
 using Src.Domain.Factories;
+using Src.Domain.ValueObjects;
 
 namespace Src.Infra.Json
 {
@@ -21,8 +22,16 @@ namespace Src.Infra.Json
             if(!File.Exists(path)) return null;
 
             var dto = JsonUtility.FromJson<PlayerDto>(File.ReadAllText(path));
-
-            return JsonUtility.FromJson<Player>(json);
+            var secses = PlayerDto.FromDto(dto,out PlayerId dtoId , out Name dtoName,out Money dtoMoney); //ファクトリー変換用プレイヤーデータの導入を検討
+            if (secses)
+            {
+                Player player = _factroy.CreateNormal(dtoId, dtoName, dtoMoney);
+                return player;
+            }
+            else
+            {
+                return null;
+            }
         }
         public void Save(Player player)
         {
@@ -31,7 +40,7 @@ namespace Src.Infra.Json
             string path = DataPathUtility.GetPath(player.Id);
             File.WriteAllText(path, json);
         }
-
         private readonly string _saveDir;
+        private readonly IPlayerFactroy _factroy;
     }
 }
