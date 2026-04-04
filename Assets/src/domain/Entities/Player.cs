@@ -5,8 +5,17 @@ namespace Src.Domain.Entities
     /// <summary>
     /// プレイヤールート
     /// </summary>
-    public class Player : IEntity
+    public class Player 
     {
+        public Player(PlayerId id,Name name,Money money)
+        {
+            _id = id;
+            _name = name;
+            _money = money;
+        }
+        public PlayerId Id { get { return _id; } }
+        public Name Name { get { return _name; } }
+        public Money Money { get { return _money; } }
         /// <summary>
         /// 所持金を増加させる。
         /// </summary>
@@ -35,13 +44,12 @@ namespace Src.Domain.Entities
             if (name == _name) return;
             _name = name;
         }
-        public void SetId(int id)
+        public void SetId(PlayerId id)
         {
             _id = id;
         }
-        public override int Id => _id;
 
-        private  int _id;
+        private PlayerId _id;
         private Money _money;
         private Name _name;
     }

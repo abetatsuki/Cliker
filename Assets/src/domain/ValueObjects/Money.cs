@@ -24,6 +24,8 @@ namespace Src.Domain.ValueObjects
             _amount = amount;
         }
 
+        public int Amonut {  get { return _amount; } }
+
         /// <summary>
         /// 指定した金額を加算した結果を返す。
         /// </summary>
@@ -79,13 +81,6 @@ namespace Src.Domain.ValueObjects
         public override int GetHashCode()
         {
             return _amount.GetHashCode();
-        }
-        /// <summary>
-        /// 金額を整数で返す。
-        /// </summary>
-        public int GetAmount()
-        {
-            return _amount;
         }
 
         /// <summary>

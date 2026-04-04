@@ -19,7 +19,7 @@ namespace Src.Domain.ValueObjects
             }
             _name = name;
         }
-
+        public string Value { get { return _name; } }
         /// <summary>
         /// 同じ名前を持つNameを等しいとみなす。
         /// </summary>
@@ -34,11 +34,6 @@ namespace Src.Domain.ValueObjects
         public override int GetHashCode()
         {
             return _name.GetHashCode();
-        }
-
-        public string GetName()
-        {
-            return _name;
         }
         private const int _nameLength = 10;
         private readonly string _name;
