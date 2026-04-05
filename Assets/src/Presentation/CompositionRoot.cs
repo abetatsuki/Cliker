@@ -8,7 +8,7 @@ public class CompositionRoot : MonoBehaviour
 {
     private void Awake()
     {
-        IPlayerFactroy factory = new PlayerFactory();
+        IPlayerFactory factory = new PlayerFactory();
         IPlayerRepository repository = new PlayerRepository(factory);
         Login = new PlayerLogin(repository,factory);
         PlayerAppService service = new PlayerAppService(repository);

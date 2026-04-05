@@ -10,10 +10,10 @@ namespace Src.Infra.Json
 {
     public class PlayerRepository : IPlayerRepository
     {
-        public PlayerRepository(IPlayerFactroy factory)
+        public PlayerRepository(IPlayerFactory factory)
         {
             _saveDir = DataPathUtility.PlayersPath;
-            _factroy = factory;
+            _factory = factory;
             Directory.CreateDirectory(_saveDir);
         }
 
@@ -23,10 +23,10 @@ namespace Src.Infra.Json
             if(!File.Exists(path)) return null;
 
             var dto = JsonUtility.FromJson<PlayerDto>(File.ReadAllText(path));
-            var secses = PlayerDto.FromDto(dto,out PlayerId dtoId , out Name dtoName,out Money dtoMoney); //ファクトリー変換用プレイヤーデータの導入を検討
-            if (secses)
+            var success = PlayerDto.FromDto(dto,out PlayerId dtoId , out Name dtoName,out Money dtoMoney); //ファクトリー変換用プレイヤーデータの導入を検討
+            if (success)
             {
-                Player player = _factroy.CreateNormal(dtoId, dtoName, dtoMoney);
+                Player player = _factory.CreateNormal(dtoId, dtoName, dtoMoney);
                 return player;
             }
             else
@@ -42,6 +42,6 @@ namespace Src.Infra.Json
             File.WriteAllText(path, json);
         }
         private readonly string _saveDir;
-        private readonly IPlayerFactroy _factroy;
+        private readonly IPlayerFactory _factory;
     }
 }
