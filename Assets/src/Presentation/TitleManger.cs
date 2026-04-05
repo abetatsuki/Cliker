@@ -8,6 +8,7 @@ public class TitleManger : MonoBehaviour
 {
     public void Login()
     {
+        if (_id == null) return;
         _root.Login.Login(_id,_name);
         SceneManager.LoadScene("InGame");
     }

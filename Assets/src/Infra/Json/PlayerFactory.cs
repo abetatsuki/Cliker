@@ -27,7 +27,7 @@ public class PlayerFactory : IPlayerFactroy
         return new Player(
             id,
             name,
-            money = default
+            money
             );
     }
 

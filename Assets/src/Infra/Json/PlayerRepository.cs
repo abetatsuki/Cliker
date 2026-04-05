@@ -13,6 +13,7 @@ namespace Src.Infra.Json
         public PlayerRepository(IPlayerFactroy factory)
         {
             _saveDir = DataPathUtility.PlayersPath;
+            _factroy = factory;
             Directory.CreateDirectory(_saveDir);
         }
 

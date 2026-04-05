@@ -21,22 +21,23 @@ namespace Src.Domain.Entities
         /// </summary>
         public void AddMoney(Money amount)
         {
-            _money.Add(amount);
+            _money = _money.Add(amount);
+            
         }
         public bool TrySubtract(Money cost)
         {
             if (!_money.CanSubtract(cost))return false;
-            _money.Subtract(cost);
+            _money = _money.Subtract(cost);
             return true;
         }
         public void Click()
         {
-            _money.Add(new Money(1));
+            _money = _money.Add(new Money(1));
         }
         public bool TryBuy(Money cost)
         {
             if (!_money.CanSubtract(cost)) return false;
-            _money.Subtract(cost);
+            _money = _money.Subtract(cost);
             return true;
         }
         public void ChangeName(Name name)
