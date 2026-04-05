@@ -3,15 +3,41 @@ using TMPro;
 using Src.Application;
 using Src.Domain.ValueObjects;
 using UnityEngine.SceneManagement;
+using System;
 
 public class TitleManger : MonoBehaviour
 {
+
+    //IDと名前自体にこのチェックをもたせるかも
     public void Login()
     {
-        if (_id == null) return;
-        _root.Login.Login(_id,_name);
+        if (!int.TryParse(_idText.text, out int idValue))
+        {
+            Debug.LogError("IDは数値で入力してください。");
+            return;
+        }
+
+        if (string.IsNullOrWhiteSpace(_nameText.text))
+        {
+            Debug.LogError("名前を入力してください。");
+            return;
+        }
+
+        try
+        {
+            _id = new PlayerId(idValue);
+            _name = new Name(_nameText.text);
+        }
+        catch (ArgumentException ex)
+        {
+            Debug.LogError(ex.Message);
+            return;
+        }
+
+        _root.Login.Login(_id, _name);
         SceneManager.LoadScene("InGame");
     }
+
 
     [SerializeField] private TMP_InputField _idText;
     [SerializeField] private TMP_InputField _nameText;
@@ -20,23 +46,7 @@ public class TitleManger : MonoBehaviour
     private Name _name;
     private void Start()
     {
-        _idText.onEndEdit.AddListener(OnIdChanged);
-        _nameText.onEndEdit.AddListener(OnNameChanged);
         _root = FindAnyObjectByType<CompositionRoot>();
-    }
-
-    private void OnIdChanged(string input)
-    {
-        if (int.TryParse(input, out int result))
-        {
-            _id  = new PlayerId(result);
-          
-        }
-    }
-
-    private void OnNameChanged(string input)
-    {
-        _name = new Name(input);
     }
 
 }

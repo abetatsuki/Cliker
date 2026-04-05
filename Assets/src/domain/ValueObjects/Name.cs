@@ -1,25 +1,26 @@
 ﻿using System;
+
 namespace Src.Domain.ValueObjects
 {
-    public record struct Name
+    public sealed record Name
     {
-        /// <summary>
-        /// 文字数上限以内で名前を生成する。
-        /// </summary>
-        /// <param name="name">　名前　</param>
-        /// <exception cref="ArgumentException">
-        /// 名前が文字数上限を超えてる場合はスローする。
-        /// </exception>
-        public Name(string name)
+        public string Value { get; }
+
+        public Name(string value)
         {
-            if (name.Length > _nameLength)
+            if (string.IsNullOrWhiteSpace(value))
             {
-                throw new ArgumentException(nameof(name), $"名前は{_nameLength}以内でなければなりません。");
+                throw new ArgumentException("名前は必須です。", nameof(value));
             }
-            _name = name;
+
+            if (value.Length > MaxLength)
+            {
+                throw new ArgumentException($"名前は{MaxLength}文字以内でなければなりません。", nameof(value));
+            }
+
+            Value = value;
         }
-        public string Value { get { return _name; } }
-        private const int _nameLength = 10;
-        private readonly string _name;
+
+        public const int MaxLength = 10;
     }
 }

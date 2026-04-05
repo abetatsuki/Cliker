@@ -1,5 +1,6 @@
 ﻿using Src.Domain.Entities;
 using Src.Domain.ValueObjects;
+using System;
 namespace Src.Infra.Json
 {
     public class PlayerDto
@@ -14,20 +15,26 @@ namespace Src.Infra.Json
             Name = player.Name.Value,
             Money = player.Money.Amonut
         };
-        public static bool FromDto(PlayerDto dto, out PlayerId id , out Name name , out Money moeny)
+        public static bool FromDto(PlayerDto dto, out PlayerId id, out Name name, out Money money)
         {
-            if (dto == null)
+            id = null;
+            name = null;
+            money = default;
+
+            if (dto == null) return false;
+
+            try
             {
-                id = null;
-                name = new Name();
-                moeny = new Money(0);
+                id = new PlayerId(dto.Id);
+                name = new Name(dto.Name);
+                money = new Money(dto.Money);
+                return true;
+            }
+            catch (ArgumentException)
+            {
                 return false;
             }
+        }
 
-            id = new PlayerId(dto.Id);
-            name = new Name(dto.Name);
-            moeny = new Money(dto.Money);
-            return true;
-        } 
     }
 }
