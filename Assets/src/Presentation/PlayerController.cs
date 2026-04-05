@@ -14,7 +14,6 @@ namespace Src.Application
         {
             LoginTest(RuntimeDataManager.Player);
             RuntimeDataManager.Player.AddMoney(new Money(100));
-            OnDestroy();
         }
 
         private void OnDestroy()

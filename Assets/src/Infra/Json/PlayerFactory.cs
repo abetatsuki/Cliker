@@ -1,7 +1,7 @@
 ﻿using Src.Domain.Entities;
 using Src.Domain.Factories;
 using Src.Domain.ValueObjects;
-public class PlayerFactory : IPlayerFactroy
+public class PlayerFactory : IPlayerFactory
 {
     public PlayerFactory() { }
     public Player CreateNewNormal(PlayerId id, Name name)
@@ -27,7 +27,7 @@ public class PlayerFactory : IPlayerFactroy
         return new Player(
             id,
             name,
-            money = default
+            money
             );
     }
 

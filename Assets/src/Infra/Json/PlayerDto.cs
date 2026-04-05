@@ -16,10 +16,10 @@ namespace Src.Infra.Json
         };
         public static bool FromDto(PlayerDto dto, out PlayerId id , out Name name , out Money moeny)
         {
-            if (dto == null && dto.Name == null)
+            if (dto == null)
             {
                 id = null;
-                name = null;
+                name = new Name();
                 moeny = new Money(0);
                 return false;
             }

@@ -7,7 +7,7 @@ namespace Src.Application
 {
     public class PlayerLogin 
     {
-        public PlayerLogin(IPlayerRepository repository,IPlayerFactroy factory)
+        public PlayerLogin(IPlayerRepository repository,IPlayerFactory factory)
         {
             _repository = repository;
             _factory = factory;
@@ -22,7 +22,7 @@ namespace Src.Application
             RuntimeDataManager.SetPlayer(player);
         }
         private readonly IPlayerRepository _repository;
-        private readonly IPlayerFactroy _factory;
+        private readonly IPlayerFactory _factory;
     }
 }
 
