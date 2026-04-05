@@ -1,0 +1,1 @@
+{"AdditionalImports":[{"Path":"LangVersion.props","Position":0}],"AdditionalImportsAdditionalProjects":["Assembly-CSharp.csproj","Application.csproj","Assembly-CSharp-Editor.csproj","Domain.csproj","Infra.csproj","Presentation.csproj","Test.csproj"],"EnableAddAnalyzerReferences":false,"AddAnalyzerReferencesAdditionalProjects":[]}
